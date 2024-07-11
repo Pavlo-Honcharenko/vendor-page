@@ -9845,7 +9845,7 @@
                 itemSelector: "[data-iso-item]",
                 masonry: {
                     fitWidth: true,
-                    gutter: 10
+                    gutter: 0
                 }
             });
         }

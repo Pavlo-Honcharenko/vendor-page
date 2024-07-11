@@ -98,7 +98,8 @@ h6 {
 [class*=__container] {
   max-width: 77.5rem;
   margin: 0 auto;
-  padding: 0 .9375rem
+  padding: 0 .9375rem;
+  width: 100vw
 }
 .button {
   display: inline-flex;
@@ -635,7 +636,8 @@ textarea.input {
 }
 .main-wrapper {
   width: 100%;
-  display: flex
+  display: flex;
+  background-color: #f9f8f7
 }
 .col-contact {
   background-color: #f9f8f7;
@@ -647,8 +649,8 @@ textarea.input {
   min-height: 100vh
 }
 .col-content {
-  flex: 1 1 100%;
-  background-color: #fff
+  background-color: #fff;
+  flex: 0 0 100vw
 }
 .contact-form {
   position: fixed;
@@ -780,15 +782,17 @@ textarea.input {
   font-weight: 300
 }
 .main {
-  padding-bottom: 100px
+  padding-bottom: 100px;
+  width: 100%;
+  max-width: 100%
 }
 .main__row {
   display: flex;
-  gap: 18px
+  gap: 20px
 }
 .main__col {
-  flex: 0 1 50%;
-  min-width: 0
+  min-width: 0;
+  width: 100%
 }
 .main__col--content .image-premium-vendor {
   display: block;
@@ -958,14 +962,17 @@ textarea.input {
 }
 .gallery .gallery-images {
   margin: 0 auto;
-  width: 1200px!important;
-  max-width: 1200px!important
+  width: 100%
 }
 .gallery .gallery-image {
-  width: 595px!important
+  border-top: 3px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 2px solid #fff;
+  border-left: 1px solid #fff;
+  width: 50%
 }
 .gallery .gallery-image img {
-  width: calc(100% - 5px)
+  width: 100%
 }
 .swiper {
   overflow: hidden
@@ -997,17 +1004,48 @@ textarea.input {
 .swiper-button-lock {
   display: none!important
 }
+@media (min-width:47.99875em) {
+  [class*=__container] {
+    width: calc(100vw - 300px)
+  }
+  .col-contact {
+    flex: 0 0 300px
+  }
+  .col-content {
+    flex: 0 0 calc(100vw - 300px)
+  }
+  .contact-form {
+    width: 280px;
+    display: block
+  }
+  .main__col {
+    width: calc(100vw - 330px)
+  }
+}
+@media (min-width:61.99875em) {
+  .main__col {
+    flex: 0 0 49.9%
+  }
+}
+@media (min-width:77.5em) {
+  .main__col {
+    flex: 0 0 600px
+  }
+}
 @media (min-width:1600px) {
   .col-contact {
     flex: 0 0 340px
   }
-  .contact-form {
-    display: block
+  .col-content {
+    flex: 0 0 calc(100vw - 340px)
   }
 }
 @media (min-width:1800px) {
   .col-contact {
     flex: 0 0 19.4vw
+  }
+  .col-content {
+    flex: 0 0 calc(100% - 19.4vw)
   }
 }
 @media (max-width:77.5em) {
@@ -1015,51 +1053,14 @@ textarea.input {
     flex: 0 0 calc(100vw - 30px);
     width: calc(100vw - 30px)
   }
-  .main__col {
-    flex: 0 1 49vw
-  }
-  .why-book {
-    width: 100vw
-  }
-  .gallery {
-    width: 100vw
-  }
-  .gallery .gallery-images {
-    width: 900px!important
-  }
-  .gallery .gallery-image {
-    width: 445px!important
+  .main {
+    width: calc(100% - 60px);
+    max-width: calc(100% - 60px)
   }
 }
 @media (max-width:61.99875em) {
-  .gallery .gallery-images {
-    width: 740px!important
-  }
-  .gallery .gallery-image {
-    width: 365px!important
-  }
-}
-@media (max-width:47.99875em) {
   .main__row {
     display: block
-  }
-  .main__col {
-    flex: 0 0 calc(100vw - 30px);
-    width: calc(100vw - 30px)
-  }
-  .gallery .gallery-images {
-    width: 450px!important
-  }
-  .gallery .gallery-image {
-    width: 220px!important
-  }
-}
-@media (max-width:29.99875em) {
-  .gallery .gallery-images {
-    width: calc(100vw - 30px)!important
-  }
-  .gallery .gallery-image {
-    width: calc(100vw - 30px)!important
   }
 }
 @media (any-hover:hover) {
