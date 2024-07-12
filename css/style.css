@@ -1110,6 +1110,186 @@ textarea.input {
   color: #211d1e;
   margin-bottom: 60px
 }
+.features {
+  padding-top: 80px;
+  padding-bottom: 20px
+}
+.features__description {
+  text-align: center;
+  font-size: 16px;
+  color: #211d1e;
+  margin-bottom: 60px
+}
+.features-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center
+}
+.features-items .features-item {
+  flex: 0 0 calc(50% - 16px);
+  display: flex;
+  align-items: center;
+  flex-direction: column
+}
+.features-items .features-item__image {
+  width: 100%;
+  margin-bottom: 30px
+}
+.features-items .features-item__image img {
+  width: 100%
+}
+.features-items .features-item__text {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 30px
+}
+.features-items .features-item__button {
+  font-size: 19px;
+  color: #000;
+  border: 2px solid #c99a0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 55px;
+  margin: auto auto 30px
+}
+.awards {
+  padding-top: 80px;
+  padding-bottom: 20px
+}
+.awards__description {
+  text-align: center;
+  font-size: 16px;
+  color: #211d1e;
+  margin-bottom: 60px
+}
+.awards-items {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px
+}
+.awards-items .awards-item {
+  max-width: 270px
+}
+.awards-items .awards-image img {
+  width: 100%
+}
+.reviews {
+  padding-top: 80px;
+  padding-bottom: 20px
+}
+.reviews__description {
+  text-align: center;
+  font-size: 16px;
+  color: #211d1e;
+  margin-bottom: 60px
+}
+.promise {
+  padding-top: 80px;
+  padding-bottom: 80px
+}
+.promise__title {
+  text-align: center;
+  font-size: 33px;
+  color: #000;
+  margin-bottom: 40px
+}
+.promise__title span {
+  color: #c99a0c
+}
+.promise__text {
+  color: #000;
+  font-size: 10px;
+  font-weight: 300;
+  margin-bottom: 30px;
+  text-align: center
+}
+.promise-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px
+}
+.promise-item {
+  white-space: nowrap;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px
+}
+.more {
+  padding-top: 80px;
+  padding-bottom: 20px
+}
+.more__title {
+  font-size: 26px;
+  flex-wrap: wrap;
+  text-align: center;
+  color: #231f20;
+  margin-bottom: 70px
+}
+.more__items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px
+}
+.more__item {
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 20px 60px
+}
+.more__images {
+  max-width: 80%;
+  position: relative
+}
+.more__images .more-img-1 {
+  width: 100%
+}
+.more__images .more-img-2 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  right: -25%
+}
+.more .item-title {
+  font-size: 24px;
+  line-height: 150%;
+  text-align: center;
+  margin: 30px auto;
+  font-weight: 500
+}
+.more .item-title div {
+  font-size: 22px;
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 400;
+  white-space: nowrap;
+  line-height: 100%;
+  margin-bottom: 12px
+}
+.more .item-button {
+  font-size: 19px;
+  color: #000;
+  border: 2px solid #c99a0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 55px;
+  margin: auto auto 3px
+}
 .swiper {
   overflow: hidden
 }
@@ -1255,6 +1435,25 @@ textarea.input {
     padding-top: 70px;
     padding-bottom: 45px
   }
+  .features {
+    padding-top: 70px;
+    padding-bottom: 25px
+  }
+  .awards {
+    padding-top: 70px;
+    padding-bottom: 25px
+  }
+  .reviews {
+    padding-top: 70px;
+    padding-bottom: 25px
+  }
+  .promise {
+    padding-top: 70px;
+    padding-bottom: 40px
+  }
+  .more {
+    padding-top: 70px
+  }
 }
 @media (max-width:29.99875em) {
   .gallery {
@@ -1280,6 +1479,21 @@ textarea.input {
   }
   .qa__title {
     font-size: 60px
+  }
+  .features {
+    padding-top: 60px;
+    padding-bottom: 20px
+  }
+  .awards {
+    padding-top: 60px;
+    padding-bottom: 20px
+  }
+  .reviews {
+    padding-top: 60px;
+    padding-bottom: 20px
+  }
+  .more {
+    padding-top: 60px
   }
 }
 @media (any-hover:hover) {
@@ -1331,5 +1545,13 @@ textarea.input {
     cursor: pointer;
     -webkit-transform: scale(1.05);
     transform: scale(1.05)
+  }
+  .features-items .features-item__button:hover {
+    box-shadow: 1px 1px 2px #c99a0c;
+    font-weight: 500
+  }
+  .more .item-button:hover {
+    box-shadow: 1px 1px 2px #c99a0c;
+    font-weight: 500
   }
 }
