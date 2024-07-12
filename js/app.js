@@ -5958,6 +5958,75 @@
     (() => {
         "use strict";
         const flsModules = {};
+        let _slideUp = (target, duration = 500, showmore = 0) => {
+            if (!target.classList.contains("_slide")) {
+                target.classList.add("_slide");
+                target.style.transitionProperty = "height, margin, padding";
+                target.style.transitionDuration = duration + "ms";
+                target.style.height = `${target.offsetHeight}px`;
+                target.offsetHeight;
+                target.style.overflow = "hidden";
+                target.style.height = showmore ? `${showmore}px` : `0px`;
+                target.style.paddingTop = 0;
+                target.style.paddingBottom = 0;
+                target.style.marginTop = 0;
+                target.style.marginBottom = 0;
+                window.setTimeout((() => {
+                    target.hidden = !showmore ? true : false;
+                    !showmore ? target.style.removeProperty("height") : null;
+                    target.style.removeProperty("padding-top");
+                    target.style.removeProperty("padding-bottom");
+                    target.style.removeProperty("margin-top");
+                    target.style.removeProperty("margin-bottom");
+                    !showmore ? target.style.removeProperty("overflow") : null;
+                    target.style.removeProperty("transition-duration");
+                    target.style.removeProperty("transition-property");
+                    target.classList.remove("_slide");
+                    document.dispatchEvent(new CustomEvent("slideUpDone", {
+                        detail: {
+                            target
+                        }
+                    }));
+                }), duration);
+            }
+        };
+        let _slideDown = (target, duration = 500, showmore = 0) => {
+            if (!target.classList.contains("_slide")) {
+                target.classList.add("_slide");
+                target.hidden = target.hidden ? false : null;
+                showmore ? target.style.removeProperty("height") : null;
+                let height = target.offsetHeight;
+                target.style.overflow = "hidden";
+                target.style.height = showmore ? `${showmore}px` : `0px`;
+                target.style.paddingTop = 0;
+                target.style.paddingBottom = 0;
+                target.style.marginTop = 0;
+                target.style.marginBottom = 0;
+                target.offsetHeight;
+                target.style.transitionProperty = "height, margin, padding";
+                target.style.transitionDuration = duration + "ms";
+                target.style.height = height + "px";
+                target.style.removeProperty("padding-top");
+                target.style.removeProperty("padding-bottom");
+                target.style.removeProperty("margin-top");
+                target.style.removeProperty("margin-bottom");
+                window.setTimeout((() => {
+                    target.style.removeProperty("height");
+                    target.style.removeProperty("overflow");
+                    target.style.removeProperty("transition-duration");
+                    target.style.removeProperty("transition-property");
+                    target.classList.remove("_slide");
+                    document.dispatchEvent(new CustomEvent("slideDownDone", {
+                        detail: {
+                            target
+                        }
+                    }));
+                }), duration);
+            }
+        };
+        let _slideToggle = (target, duration = 500) => {
+            if (target.hidden) return _slideDown(target, duration); else return _slideUp(target, duration);
+        };
         let bodyLockStatus = true;
         let bodyUnlock = (delay = 500) => {
             if (bodyLockStatus) {
@@ -5975,6 +6044,114 @@
                 }), delay);
             }
         };
+        function spollers() {
+            const spollersArray = document.querySelectorAll("[data-spollers]");
+            if (spollersArray.length > 0) {
+                document.addEventListener("click", setSpollerAction);
+                const spollersRegular = Array.from(spollersArray).filter((function(item, index, self) {
+                    return !item.dataset.spollers.split(",")[0];
+                }));
+                if (spollersRegular.length) initSpollers(spollersRegular);
+                let mdQueriesArray = dataMediaQueries(spollersArray, "spollers");
+                if (mdQueriesArray && mdQueriesArray.length) mdQueriesArray.forEach((mdQueriesItem => {
+                    mdQueriesItem.matchMedia.addEventListener("change", (function() {
+                        initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+                    }));
+                    initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+                }));
+                function initSpollers(spollersArray, matchMedia = false) {
+                    spollersArray.forEach((spollersBlock => {
+                        spollersBlock = matchMedia ? spollersBlock.item : spollersBlock;
+                        if (matchMedia.matches || !matchMedia) {
+                            spollersBlock.classList.add("_spoller-init");
+                            initSpollerBody(spollersBlock);
+                        } else {
+                            spollersBlock.classList.remove("_spoller-init");
+                            initSpollerBody(spollersBlock, false);
+                        }
+                    }));
+                }
+                function initSpollerBody(spollersBlock, hideSpollerBody = true) {
+                    let spollerItems = spollersBlock.querySelectorAll("details");
+                    if (spollerItems.length) spollerItems.forEach((spollerItem => {
+                        let spollerTitle = spollerItem.querySelector("summary");
+                        if (hideSpollerBody) {
+                            spollerTitle.removeAttribute("tabindex");
+                            if (!spollerItem.hasAttribute("data-open")) {
+                                spollerItem.open = false;
+                                spollerTitle.nextElementSibling.hidden = true;
+                            } else {
+                                spollerTitle.classList.add("_spoller-active");
+                                spollerItem.open = true;
+                            }
+                        } else {
+                            spollerTitle.setAttribute("tabindex", "-1");
+                            spollerTitle.classList.remove("_spoller-active");
+                            spollerItem.open = true;
+                            spollerTitle.nextElementSibling.hidden = false;
+                        }
+                    }));
+                }
+                function setSpollerAction(e) {
+                    const el = e.target;
+                    if (el.closest("summary") && el.closest("[data-spollers]")) {
+                        e.preventDefault();
+                        if (el.closest("[data-spollers]").classList.contains("_spoller-init")) {
+                            const spollerTitle = el.closest("summary");
+                            const spollerBlock = spollerTitle.closest("details");
+                            const spollersBlock = spollerTitle.closest("[data-spollers]");
+                            const oneSpoller = spollersBlock.hasAttribute("data-one-spoller");
+                            const scrollSpoller = spollerBlock.hasAttribute("data-spoller-scroll");
+                            const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+                            if (!spollersBlock.querySelectorAll("._slide").length) {
+                                if (oneSpoller && !spollerBlock.open) hideSpollersBody(spollersBlock);
+                                !spollerBlock.open ? spollerBlock.open = true : setTimeout((() => {
+                                    spollerBlock.open = false;
+                                }), spollerSpeed);
+                                spollerTitle.classList.toggle("_spoller-active");
+                                _slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
+                                if (scrollSpoller && spollerTitle.classList.contains("_spoller-active")) {
+                                    const scrollSpollerValue = spollerBlock.dataset.spollerScroll;
+                                    const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
+                                    const scrollSpollerNoHeader = spollerBlock.hasAttribute("data-spoller-scroll-noheader") ? document.querySelector(".header").offsetHeight : 0;
+                                    window.scrollTo({
+                                        top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
+                                        behavior: "smooth"
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    if (!el.closest("[data-spollers]")) {
+                        const spollersClose = document.querySelectorAll("[data-spoller-close]");
+                        if (spollersClose.length) spollersClose.forEach((spollerClose => {
+                            const spollersBlock = spollerClose.closest("[data-spollers]");
+                            const spollerCloseBlock = spollerClose.parentNode;
+                            if (spollersBlock.classList.contains("_spoller-init")) {
+                                const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+                                spollerClose.classList.remove("_spoller-active");
+                                _slideUp(spollerClose.nextElementSibling, spollerSpeed);
+                                setTimeout((() => {
+                                    spollerCloseBlock.open = false;
+                                }), spollerSpeed);
+                            }
+                        }));
+                    }
+                }
+                function hideSpollersBody(spollersBlock) {
+                    const spollerActiveBlock = spollersBlock.querySelector("details[open]");
+                    if (spollerActiveBlock && !spollersBlock.querySelectorAll("._slide").length) {
+                        const spollerActiveTitle = spollerActiveBlock.querySelector("summary");
+                        const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+                        spollerActiveTitle.classList.remove("_spoller-active");
+                        _slideUp(spollerActiveTitle.nextElementSibling, spollerSpeed);
+                        setTimeout((() => {
+                            spollerActiveBlock.open = false;
+                        }), spollerSpeed);
+                    }
+                }
+            }
+        }
         function menuClose() {
             bodyUnlock();
             document.documentElement.classList.remove("menu-open");
@@ -5983,6 +6160,49 @@
             setTimeout((() => {
                 if (window.FLS) console.log(message);
             }), 0);
+        }
+        function uniqArray(array) {
+            return array.filter((function(item, index, self) {
+                return self.indexOf(item) === index;
+            }));
+        }
+        function dataMediaQueries(array, dataSetValue) {
+            const media = Array.from(array).filter((function(item, index, self) {
+                if (item.dataset[dataSetValue]) return item.dataset[dataSetValue].split(",")[0];
+            }));
+            if (media.length) {
+                const breakpointsArray = [];
+                media.forEach((item => {
+                    const params = item.dataset[dataSetValue];
+                    const breakpoint = {};
+                    const paramsArray = params.split(",");
+                    breakpoint.value = paramsArray[0];
+                    breakpoint.type = paramsArray[1] ? paramsArray[1].trim() : "max";
+                    breakpoint.item = item;
+                    breakpointsArray.push(breakpoint);
+                }));
+                let mdQueries = breakpointsArray.map((function(item) {
+                    return "(" + item.type + "-width: " + item.value + "px)," + item.value + "," + item.type;
+                }));
+                mdQueries = uniqArray(mdQueries);
+                const mdQueriesArray = [];
+                if (mdQueries.length) {
+                    mdQueries.forEach((breakpoint => {
+                        const paramsArray = breakpoint.split(",");
+                        const mediaBreakpoint = paramsArray[1];
+                        const mediaType = paramsArray[2];
+                        const matchMedia = window.matchMedia(paramsArray[0]);
+                        const itemsArray = breakpointsArray.filter((function(item) {
+                            if (item.value === mediaBreakpoint && item.type === mediaType) return true;
+                        }));
+                        mdQueriesArray.push({
+                            itemsArray,
+                            matchMedia
+                        });
+                    }));
+                    return mdQueriesArray;
+                }
+            }
         }
         let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
@@ -9233,6 +9453,159 @@
             }));
             return params;
         }
+        function Navigation(_ref) {
+            let {swiper, extendParams, on, emit} = _ref;
+            extendParams({
+                navigation: {
+                    nextEl: null,
+                    prevEl: null,
+                    hideOnClick: false,
+                    disabledClass: "swiper-button-disabled",
+                    hiddenClass: "swiper-button-hidden",
+                    lockClass: "swiper-button-lock",
+                    navigationDisabledClass: "swiper-navigation-disabled"
+                }
+            });
+            swiper.navigation = {
+                nextEl: null,
+                prevEl: null
+            };
+            function getEl(el) {
+                let res;
+                if (el && typeof el === "string" && swiper.isElement) {
+                    res = swiper.el.querySelector(el);
+                    if (res) return res;
+                }
+                if (el) {
+                    if (typeof el === "string") res = [ ...document.querySelectorAll(el) ];
+                    if (swiper.params.uniqueNavElements && typeof el === "string" && res && res.length > 1 && swiper.el.querySelectorAll(el).length === 1) res = swiper.el.querySelector(el); else if (res && res.length === 1) res = res[0];
+                }
+                if (el && !res) return el;
+                return res;
+            }
+            function toggleEl(el, disabled) {
+                const params = swiper.params.navigation;
+                el = utils_makeElementsArray(el);
+                el.forEach((subEl => {
+                    if (subEl) {
+                        subEl.classList[disabled ? "add" : "remove"](...params.disabledClass.split(" "));
+                        if (subEl.tagName === "BUTTON") subEl.disabled = disabled;
+                        if (swiper.params.watchOverflow && swiper.enabled) subEl.classList[swiper.isLocked ? "add" : "remove"](params.lockClass);
+                    }
+                }));
+            }
+            function update() {
+                const {nextEl, prevEl} = swiper.navigation;
+                if (swiper.params.loop) {
+                    toggleEl(prevEl, false);
+                    toggleEl(nextEl, false);
+                    return;
+                }
+                toggleEl(prevEl, swiper.isBeginning && !swiper.params.rewind);
+                toggleEl(nextEl, swiper.isEnd && !swiper.params.rewind);
+            }
+            function onPrevClick(e) {
+                e.preventDefault();
+                if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
+                swiper.slidePrev();
+                emit("navigationPrev");
+            }
+            function onNextClick(e) {
+                e.preventDefault();
+                if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
+                swiper.slideNext();
+                emit("navigationNext");
+            }
+            function init() {
+                const params = swiper.params.navigation;
+                swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
+                    nextEl: "swiper-button-next",
+                    prevEl: "swiper-button-prev"
+                });
+                if (!(params.nextEl || params.prevEl)) return;
+                let nextEl = getEl(params.nextEl);
+                let prevEl = getEl(params.prevEl);
+                Object.assign(swiper.navigation, {
+                    nextEl,
+                    prevEl
+                });
+                nextEl = utils_makeElementsArray(nextEl);
+                prevEl = utils_makeElementsArray(prevEl);
+                const initButton = (el, dir) => {
+                    if (el) el.addEventListener("click", dir === "next" ? onNextClick : onPrevClick);
+                    if (!swiper.enabled && el) el.classList.add(...params.lockClass.split(" "));
+                };
+                nextEl.forEach((el => initButton(el, "next")));
+                prevEl.forEach((el => initButton(el, "prev")));
+            }
+            function destroy() {
+                let {nextEl, prevEl} = swiper.navigation;
+                nextEl = utils_makeElementsArray(nextEl);
+                prevEl = utils_makeElementsArray(prevEl);
+                const destroyButton = (el, dir) => {
+                    el.removeEventListener("click", dir === "next" ? onNextClick : onPrevClick);
+                    el.classList.remove(...swiper.params.navigation.disabledClass.split(" "));
+                };
+                nextEl.forEach((el => destroyButton(el, "next")));
+                prevEl.forEach((el => destroyButton(el, "prev")));
+            }
+            on("init", (() => {
+                if (swiper.params.navigation.enabled === false) disable(); else {
+                    init();
+                    update();
+                }
+            }));
+            on("toEdge fromEdge lock unlock", (() => {
+                update();
+            }));
+            on("destroy", (() => {
+                destroy();
+            }));
+            on("enable disable", (() => {
+                let {nextEl, prevEl} = swiper.navigation;
+                nextEl = utils_makeElementsArray(nextEl);
+                prevEl = utils_makeElementsArray(prevEl);
+                if (swiper.enabled) {
+                    update();
+                    return;
+                }
+                [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.add(swiper.params.navigation.lockClass)));
+            }));
+            on("click", ((_s, e) => {
+                let {nextEl, prevEl} = swiper.navigation;
+                nextEl = utils_makeElementsArray(nextEl);
+                prevEl = utils_makeElementsArray(prevEl);
+                const targetEl = e.target;
+                let targetIsButton = prevEl.includes(targetEl) || nextEl.includes(targetEl);
+                if (swiper.isElement && !targetIsButton) {
+                    const path = e.path || e.composedPath && e.composedPath();
+                    if (path) targetIsButton = path.find((pathEl => nextEl.includes(pathEl) || prevEl.includes(pathEl)));
+                }
+                if (swiper.params.navigation.hideOnClick && !targetIsButton) {
+                    if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
+                    let isHidden;
+                    if (nextEl.length) isHidden = nextEl[0].classList.contains(swiper.params.navigation.hiddenClass); else if (prevEl.length) isHidden = prevEl[0].classList.contains(swiper.params.navigation.hiddenClass);
+                    if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
+                    [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.toggle(swiper.params.navigation.hiddenClass)));
+                }
+            }));
+            const enable = () => {
+                swiper.el.classList.remove(...swiper.params.navigation.navigationDisabledClass.split(" "));
+                init();
+                update();
+            };
+            const disable = () => {
+                swiper.el.classList.add(...swiper.params.navigation.navigationDisabledClass.split(" "));
+                destroy();
+            };
+            Object.assign(swiper.navigation, {
+                enable,
+                disable,
+                update,
+                init,
+                destroy
+            });
+        }
         function classes_to_selector_classesToSelector(classes) {
             if (classes === void 0) classes = "";
             return `.${classes.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
@@ -9812,28 +10185,44 @@
             });
         }
         function initSliders() {
-            if (document.querySelector(".swiper")) new swiper_core_Swiper(".swiper", {
-                modules: [ Pagination, Autoplay ],
-                observer: true,
-                observeParents: true,
-                slidesPerView: 1,
-                spaceBetween: 0,
-                speed: 800,
-                loop: true,
-                autoplay: {
-                    delay: 3e3,
-                    disableOnInteraction: false
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true
-                },
-                scrollbar: {
-                    el: ".swiper-scrollbar",
-                    draggable: true
-                },
-                on: {}
-            });
+            if (document.querySelector(".swiper")) {
+                new swiper_core_Swiper(".main__slider", {
+                    modules: [ Pagination, Autoplay ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    speed: 800,
+                    loop: true,
+                    autoplay: {
+                        delay: 3e3,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true
+                    },
+                    scrollbar: {
+                        el: ".swiper-scrollbar",
+                        draggable: true
+                    },
+                    on: {}
+                });
+                new swiper_core_Swiper(".highlights__slider", {
+                    modules: [ Navigation, Autoplay ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    speed: 800,
+                    loop: true,
+                    navigation: {
+                        prevEl: ".swiper-button-prev",
+                        nextEl: ".swiper-button-next"
+                    },
+                    on: {}
+                });
+            }
         }
         window.addEventListener("load", (function(e) {
             initSliders();
@@ -9849,7 +10238,22 @@
                 }
             });
         }
+        document.addEventListener("DOMContentLoaded", (function() {
+            var galleryImages = document.querySelector(".gallery-images");
+            var moreGallery = document.getElementById("more-gallery");
+            if (galleryImages && moreGallery) {
+                var originalHeight = galleryImages.offsetHeight;
+                var newHeight = originalHeight / 2;
+                galleryImages.style.height = newHeight + "px";
+                moreGallery.addEventListener("click", (function() {
+                    galleryImages.style.height = originalHeight + "px";
+                    moreGallery.classList.add("hidden");
+                    galleryImages.classList.remove("bg-gradient");
+                }));
+            }
+        }));
         window["FLS"] = false;
+        spollers();
         formFieldsInit({
             viewPass: false,
             autoHeight: false
