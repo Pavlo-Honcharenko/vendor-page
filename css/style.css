@@ -1015,7 +1015,11 @@ textarea.input {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #d1d1d1
+  border: 1px solid #c99a0c;
+  color: #c99a0c;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 .social-icons .icon a {
   width: 100%;
@@ -1024,10 +1028,9 @@ textarea.input {
   justify-content: center;
   align-items: center
 }
-.social-icons .icon a img {
-  max-width: 90%;
-  min-height: 90%;
-  display: block
+.social-icons .icon a i {
+  margin-top: 1px;
+  font-size: 17px
 }
 .social-icons-text {
   padding: 20px 0;
@@ -2227,9 +2230,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .social-icons .icon a:hover {
     transition: all .3s ease 0s;
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
     cursor: pointer
+  }
+  .social-icons .icon:hover {
+    box-shadow: 1px 1px 2px rgba(201,154,12,.5568627451)
   }
   .load-more:hover {
     cursor: pointer;
