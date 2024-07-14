@@ -1093,10 +1093,17 @@ textarea.input {
   overflow: hidden;
   transition: height 1.5s ease 0s
 }
-.gallery .bg-gradient {
+.gallery .gallery-image {
+  border: 2px solid #fff;
+  width: 50%
+}
+.gallery .gallery-image img {
+  width: 100%
+}
+.bg-gradient {
   position: relative
 }
-.gallery .bg-gradient::after {
+.bg-gradient::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1106,13 +1113,6 @@ textarea.input {
   background: linear-gradient(to bottom,rgba(255,255,255,0) 0,#fff 100%);
   z-index: 2;
   pointer-events: none
-}
-.gallery .gallery-image {
-  border: 2px solid #fff;
-  width: 50%
-}
-.gallery .gallery-image img {
-  width: 100%
 }
 .load-more {
   font-size: 19px;
@@ -1340,11 +1340,14 @@ textarea.input {
   margin-bottom: 5px;
   text-align: center
 }
-.reviews-list .review-more__content p:not(:last-child) {
-  margin-bottom: 12px
+.reviews-list .review__text p {
+  margin-bottom: 15px
+}
+.reviews-list .review-more__content p {
+  margin-bottom: 15px
 }
 .reviews-list .review-more__more {
-  padding-top: 30px;
+  padding-top: 15px;
   font-size: 13px;
   font-weight: 500;
   text-align: center;
@@ -1371,6 +1374,25 @@ textarea.input {
   width: -webkit-min-content;
   width: min-content;
   white-space: nowrap
+}
+.reviews-list .vendors-response__text p:not(:last-child) {
+  margin-bottom: 15px
+}
+._showmore-active [data-showmore-button] span {
+  position: relative
+}
+._showmore-active [data-showmore-button] span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  top: 2px;
+  right: -13px;
+  display: block;
+  height: 10px;
+  width: 5px;
+  background: url(../img/icons/arrow.svg) center center/cover no-repeat;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg)
 }
 .rating {
   margin-bottom: 27px;
@@ -1415,6 +1437,30 @@ textarea.input {
 }
 .reviews-photo img {
   width: 100%
+}
+.leave-review .form-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: -webkit-min-content;
+  width: min-content;
+  margin: 30px auto
+}
+.leave-review .rating {
+  margin-bottom: 0
+}
+.leave-review .button {
+  font-size: 19px;
+  color: #000;
+  border: 2px solid #c99a0c;
+  background-color: #c99a0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 55px;
+  margin: auto auto 30px
 }
 .promise {
   padding-top: 80px;
@@ -2361,6 +2407,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     transform: scale(1.05)
   }
   .features-items .features-item__button:hover {
+    box-shadow: 1px 1px 2px #c99a0c;
+    font-weight: 500
+  }
+  .leave-review .button:hover {
+    background-color: rgba(201,154,12,.9607843137);
     box-shadow: 1px 1px 2px #c99a0c;
     font-weight: 500
   }
