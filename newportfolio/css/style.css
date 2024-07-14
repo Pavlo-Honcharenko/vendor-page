@@ -563,7 +563,7 @@ textarea.input {
   top: 50%;
   background-color: #000;
   height: 2px;
-  width: 15px;
+  width: 12px;
   transition: -webkit-transform .5s ease 0s;
   transition: transform .5s ease 0s;
   transition: transform .5s ease 0s,-webkit-transform .5s ease 0s
@@ -982,6 +982,9 @@ textarea.input {
   -o-object-fit: cover;
   object-fit: cover
 }
+.main__slider .swiper-slide {
+  border-bottom: 10px solid #c99a0c
+}
 .swiper-pagination {
   -webkit-transform: translate(0,-35px);
   transform: translate(0,-35px);
@@ -1084,7 +1087,8 @@ textarea.input {
   text-align: center;
   font-size: 16px;
   color: #211d1e;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  line-height: 140%
 }
 .gallery .gallery-images {
   margin: 0 auto;
@@ -1133,7 +1137,8 @@ textarea.input {
   text-align: center;
   font-size: 16px;
   color: #211d1e;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  line-height: 140%
 }
 .highlights__content {
   background-color: #f9f8f7;
@@ -1223,9 +1228,9 @@ textarea.input {
 }
 .qa__description {
   font-size: 16px;
-  line-height: 200%;
   color: #211d1e;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  line-height: 140%
 }
 .features {
   padding-top: 80px;
@@ -1235,7 +1240,8 @@ textarea.input {
   text-align: center;
   font-size: 16px;
   color: #211d1e;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  line-height: 140%
 }
 .features-items {
   display: flex;
@@ -1280,7 +1286,8 @@ textarea.input {
   text-align: center;
   font-size: 16px;
   color: #211d1e;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  line-height: 140%
 }
 .awards-items {
   margin: 0 auto;
@@ -1291,7 +1298,7 @@ textarea.input {
   gap: 15px
 }
 .awards-items .awards-item {
-  max-width: 270px
+  max-width: 260px
 }
 .awards-items .awards-image img {
   width: 100%
@@ -1309,13 +1316,15 @@ textarea.input {
 .reviews-list {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  width: 100%
 }
 .reviews-list .review {
   flex: 0 1 47%;
-  margin-bottom: 60px;
-  max-width: 550px;
   color: #000
+}
+.reviews-list .review:not(:last-child) {
+  margin-bottom: 60px
 }
 .reviews-list .review__title {
   color: #000;
@@ -1393,6 +1402,14 @@ textarea.input {
   background: url(../img/icons/arrow.svg) center center/cover no-repeat;
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg)
+}
+.see-more-reviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-size: 18px;
+  margin: 30px auto 50px
 }
 .rating {
   margin-bottom: 27px;
@@ -2272,49 +2289,132 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     text-align: center;
     line-height: 150%
   }
+  .reviews-list .review {
+    flex: 0 0 100%
+  }
 }
 @media (max-width:47.99875em) {
-  .gallery {
+  .spollers__title {
+    padding: .4375rem 2.625rem .4375rem .9375rem
+  }
+  .spollers__body {
+    padding: .9375rem .9375rem
+  }
+  .title-orange {
+    font-size: 40px;
+    margin-bottom: 30px
+  }
+  .main {
+    padding-bottom: 70px
+  }
+  .main__col--content .image-premium-vendor {
+    margin: 35px auto 35px
+  }
+  .main__col--content .title {
+    margin-bottom: 35px;
+    font-size: 46px
+  }
+  .main__col--content .text-based {
+    margin-bottom: 25px
+  }
+  .main__col--content .destination-wedding {
+    margin: 0 auto 35px
+  }
+  .main__col--content .phone {
+    margin: 0 auto 15px
+  }
+  .main__slider .swiper-slide {
+    border-bottom: 5px solid #c99a0c
+  }
+  .why-book::after {
+    height: 60px;
+    top: -30px;
+    background: url(../img/decor-border.svg) calc(50% - 40px) center/cover no-repeat
+  }
+  .why-book {
     padding-top: 70px;
+    padding-bottom: 50px
+  }
+  .why-book__text p {
+    margin-bottom: 25px
+  }
+  .gallery {
+    padding-top: 50px;
     padding-bottom: 45px
   }
+  .gallery__description {
+    margin-bottom: 30px
+  }
   .highlights {
-    padding-top: 70px;
+    padding-top: 50px;
     padding-bottom: 45px
+  }
+  .highlights__description {
+    margin-bottom: 30px
   }
   .highlights__content {
     padding: 40px
   }
+  .highlights .slide-image {
+    border-bottom: 5px solid #c99a0c
+  }
   .qa {
-    padding-top: 70px;
+    padding-top: 50px;
     padding-bottom: 45px
   }
+  .qa__title {
+    font-size: 70px
+  }
+  .qa__description {
+    margin-bottom: 50px
+  }
   .features {
-    padding-top: 70px;
-    padding-bottom: 25px
+    padding-top: 40px;
+    padding-bottom: 30px
+  }
+  .features__description {
+    margin-bottom: 30px
   }
   .awards {
-    padding-top: 70px;
+    padding-top: 40px;
     padding-bottom: 25px
   }
+  .awards__description {
+    margin-bottom: 30px
+  }
+  .awards-items .awards-item {
+    max-width: 220px
+  }
   .reviews {
-    padding-top: 70px
+    padding-top: 50px
   }
   .promise {
     padding-top: 70px;
     padding-bottom: 40px
   }
+  .promise__title {
+    margin-bottom: 30px
+  }
   .more {
-    padding-top: 70px
+    padding-top: 60px
+  }
+  .more__title {
+    margin-bottom: 40px
   }
 }
 @media (max-width:29.99875em) {
+  .main__col--content .title {
+    font-size: 42px
+  }
+  .social-icons {
+    gap: 22px
+  }
   .gallery {
-    padding-top: 60px;
+    padding-top: 50px;
     padding-bottom: 40px
   }
   .highlights {
-    padding-top: 60px;
+    padding-top: 50px;
     padding-bottom: 40px
   }
   .highlights__content {
@@ -2327,25 +2427,28 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     width: 20px
   }
   .qa {
-    padding-top: 60px;
+    padding-top: 50px;
     padding-bottom: 40px
   }
   .qa__title {
     font-size: 60px
   }
   .features {
-    padding-top: 60px;
-    padding-bottom: 20px
+    padding-top: 30px;
+    padding-bottom: 30px
   }
   .awards {
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 20px
   }
   .reviews {
-    padding-top: 60px
+    padding-top: 40px
+  }
+  .leave-review {
+    padding: 20px
   }
   .more {
-    padding-top: 60px
+    padding-top: 50px
   }
 }
 @media (any-hover:hover) {
