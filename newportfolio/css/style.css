@@ -530,6 +530,69 @@ textarea.input {
 .qs-datepicker .qs-event.qs-empty:after {
   background: #cce4ff
 }
+body::after {
+  content: "";
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .8s ease 0s;
+  pointer-events: none;
+  z-index: 149
+}
+.popup-show body::after {
+  opacity: 1
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 30px 10px;
+  transition: visibility .8s ease 0s;
+  visibility: hidden;
+  pointer-events: none
+}
+.popup_show {
+  z-index: 150;
+  visibility: visible;
+  overflow: auto;
+  pointer-events: auto
+}
+.popup_show .popup__content {
+  visibility: visible;
+  -webkit-transform: scale(1);
+  transform: scale(1)
+}
+.popup__wrapper {
+  flex-direction: column;
+  min-height: 100%;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.popup__content {
+  visibility: hidden;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  transition: -webkit-transform .3s ease 0s;
+  transition: transform .3s ease 0s;
+  transition: transform .3s ease 0s,-webkit-transform .3s ease 0s;
+  background-color: #eee;
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 20px
+}
+.lock .popup__content {
+  visibility: visible
+}
 .spollers {
   display: grid;
   gap: 15px
@@ -605,9 +668,6 @@ textarea.input {
 }
 ._showmore-active [data-showmore-button] span:last-child {
   display: block
-}
-[data-sticky] {
-  position: relative
 }
 .ibg {
   width: 100%;
@@ -816,25 +876,29 @@ textarea.input {
   font-weight: 300;
   color: #000
 }
+.form-vendor .input.wedding-date::-webkit-input-placeholder,
 .form-vendor .input::-webkit-input-placeholder,
 .form-vendor textarea::-webkit-input-placeholder {
   font-weight: 300;
-  color: #9b9b9b
+  color: #9b9b9b!important
 }
+.form-vendor .input.wedding-date:-ms-input-placeholder,
 .form-vendor .input:-ms-input-placeholder,
 .form-vendor textarea:-ms-input-placeholder {
   font-weight: 300;
-  color: #9b9b9b
+  color: #9b9b9b!important
 }
+.form-vendor .input.wedding-date::-ms-input-placeholder,
 .form-vendor .input::-ms-input-placeholder,
 .form-vendor textarea::-ms-input-placeholder {
   font-weight: 300;
-  color: #9b9b9b
+  color: #9b9b9b!important
 }
+.form-vendor .input.wedding-date::placeholder,
 .form-vendor .input::placeholder,
 .form-vendor textarea::placeholder {
   font-weight: 300;
-  color: #9b9b9b
+  color: #9b9b9b!important
 }
 .form-vendor textarea {
   background-color: #fff;
@@ -937,10 +1001,24 @@ textarea.input {
 .main__col--content .text-based img {
   margin-right: 15px
 }
-.main__col--content .destination-wedding {
-  display: block;
-  margin: 0 auto 60px;
+.main__col--content .two-banners {
+  max-width: 410px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 25px;
   margin: 0 auto 65px
+}
+.main__col--content .two-banners .destination-wedding,
+.main__col--content .two-banners .three-years {
+  flex: 0 1 180px
+}
+.main__col--content .two-banners .destination-wedding img,
+.main__col--content .two-banners .three-years img {
+  width: 100%
+}
+.main__col--content .two-banners .three-years img {
+  width: 90%
 }
 .main__col--content .see-website {
   width: 270px;
@@ -1090,12 +1168,43 @@ textarea.input {
   margin-bottom: 60px;
   line-height: 140%
 }
+.gallery .gallery__cards {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 5px;
+  -moz-column-gap: 5px;
+  column-gap: 5px
+}
+.gallery .gallery__cell {
+  margin: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 5px;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  break-inside: avoid
+}
+.gallery .gallery__card {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+  min-width: 141px
+}
+.gallery .gallery__card img {
+  width: 100%
+}
+.gallery .gallery__cell > .gallery__card {
+  grid-row: 1/-1;
+  -ms-grid-column: 1;
+  grid-column: 1
+}
 .gallery .gallery-images {
   margin: 0 auto;
   width: 100%;
-  background-color: #f9f8f7;
-  overflow: hidden;
-  transition: height 1.5s ease 0s
+  background-color: #f9f8f7
 }
 .gallery .gallery-image {
   border: 2px solid #fff;
@@ -1314,14 +1423,36 @@ textarea.input {
   margin-bottom: 60px
 }
 .reviews-list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 45px;
+  -moz-column-gap: 45px;
+  column-gap: 45px;
+  margin-bottom: -45px
+}
+.reviews-list .review__cell {
+  margin: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr auto;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 55px;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  break-inside: avoid
+}
+.reviews-list .rewiew__cell > .review {
+  grid-row: 1/-1;
+  -ms-grid-column: 1;
+  grid-column: 1
 }
 .reviews-list .review {
-  flex: 0 1 47%;
-  color: #000
+  color: #000;
+  max-width: 100%;
+  display: block;
+  width: 100%;
+  min-width: 141px
 }
 .reviews-list .review:not(:last-child) {
   margin-bottom: 60px
@@ -1386,6 +1517,10 @@ textarea.input {
 }
 .reviews-list .vendors-response__text p:not(:last-child) {
   margin-bottom: 15px
+}
+.reviews-list.bg-gradient::after {
+  content: "";
+  bottom: 44px
 }
 ._showmore-active [data-showmore-button] span {
   position: relative
@@ -1455,7 +1590,7 @@ textarea.input {
 .reviews-photo img {
   width: 100%
 }
-.leave-review .form-line {
+.form-line {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1464,7 +1599,7 @@ textarea.input {
   width: min-content;
   margin: 30px auto
 }
-.leave-review .rating {
+.form-line .rating {
   margin-bottom: 0
 }
 .leave-review .button {
@@ -1478,6 +1613,117 @@ textarea.input {
   width: 260px;
   height: 55px;
   margin: auto auto 30px
+}
+.popup__close {
+  outline: 0;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 18px;
+  height: 18px
+}
+.popup__close img,
+.popup__close svg {
+  width: 100%;
+  height: 100%
+}
+#leave-review-popup-form .checkbox {
+  text-align: center;
+  margin: 0 auto;
+  width: -webkit-max-content;
+  width: max-content;
+  margin-bottom: 20px
+}
+.roles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+  margin-bottom: 15px
+}
+.roles .role {
+  display: flex;
+  position: relative;
+  flex: 0 1 calc(40% - 11px)
+}
+.roles .role .label {
+  font-size: 20px;
+  font-weight: 300;
+  color: #9b9b9b;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-left: calc(-100% + 40px);
+  pointer-events: none
+}
+.roles .role input {
+  flex: 0 0 100%!important;
+  height: 20px;
+  opacity: 0!important
+}
+.roles .role::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 1px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #c99a0c
+}
+.roles .role.selected::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: -4px;
+  display: block;
+  width: 40px;
+  height: 37px;
+  background: url(../img/icons/check.svg) 0 0/100% 100% no-repeat
+}
+#upload-photos-button {
+  margin-bottom: 15px;
+  background-color: rgba(255,255,255,0);
+  border: 1px solid #c99a0c;
+  white-space: nowrap;
+  width: -webkit-min-content;
+  width: min-content;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #9b9b9b;
+  margin-left: auto;
+  margin-right: auto
+}
+#photo-upload-fields {
+  padding-top: 15px
+}
+#photo-upload-fields .input {
+  background: initial
+}
+.popup__content {
+  max-width: 470px
+}
+.field-website {
+  display: none
+}
+#leave-review-popup-form.checked .field-website {
+  display: block
+}
+#leave-review-popup-form.checked .roles {
+  display: none
+}
+#form-leave-review .leave-review {
+  padding-bottom: 0
+}
+#form-leave-review .leave-review__title {
+  background-color: #eee
+}
+#form-leave-review .button.button-submit {
+  margin-top: 20px;
+  margin-bottom: -25px
+}
+#form-leave-review .popup__content {
+  padding: 20px 20px 50px
 }
 .promise {
   padding-top: 80px;
@@ -2222,6 +2468,26 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     max-width: 100%!important
   }
 }
+@media (max-width:500px) {
+  .roles {
+    flex-wrap: wrap
+  }
+  .roles .role {
+    flex: 1 1 100%
+  }
+  .role.wedding-guest .label {
+    margin-left: 0;
+    position: absolute;
+    top: 0;
+    left: 40px
+  }
+  .role.couple .label {
+    margin-left: 0;
+    position: absolute;
+    top: 0;
+    left: 40px
+  }
+}
 @media (max-width:400px) {
   .lg-prev {
     left: calc(50% - 166px)!important
@@ -2289,9 +2555,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     text-align: center;
     line-height: 150%
   }
-  .reviews-list .review {
-    flex: 0 0 100%
-  }
 }
 @media (max-width:47.99875em) {
   .spollers__title {
@@ -2317,7 +2580,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .main__col--content .text-based {
     margin-bottom: 25px
   }
-  .main__col--content .destination-wedding {
+  .main__col--content .two-banners {
     margin: 0 auto 35px
   }
   .main__col--content .phone {
@@ -2344,6 +2607,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .gallery__description {
     margin-bottom: 30px
+  }
+  .bg-gradient::after {
+    width: 100vw
   }
   .highlights {
     padding-top: 50px;
@@ -2447,6 +2713,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .leave-review {
     padding: 20px
   }
+  .popup__close {
+    right: 15px
+  }
+  #form-leave-review .popup__content {
+    padding: 15px 15px 50px
+  }
   .more {
     padding-top: 50px
   }
@@ -2515,6 +2787,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .leave-review .button:hover {
     background-color: rgba(201,154,12,.9607843137);
+    box-shadow: 1px 1px 2px #c99a0c;
+    font-weight: 500
+  }
+  .upload-photos-button:hover {
     box-shadow: 1px 1px 2px #c99a0c;
     font-weight: 500
   }
