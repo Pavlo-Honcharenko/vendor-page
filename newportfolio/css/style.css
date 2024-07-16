@@ -1602,6 +1602,23 @@ body::after {
 .form-line .rating {
   margin-bottom: 0
 }
+#hide-fields {
+  overflow: hidden
+}
+#hide-fields .hidden-fields {
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
+  transition: -webkit-transform .6s ease 0s;
+  transition: transform .6s ease 0s;
+  transition: transform .6s ease 0s,-webkit-transform .6s ease 0s
+}
+#hide-fields.hide {
+  height: 0
+}
+#hide-fields.hide .hidden-fields {
+  -webkit-transform: translate(0,-100%);
+  transform: translate(0,-100%)
+}
 .leave-review .button {
   font-size: 19px;
   color: #000;
@@ -1613,6 +1630,9 @@ body::after {
   width: 260px;
   height: 55px;
   margin: auto auto 30px
+}
+.leave-review-mobile {
+  display: none
 }
 .popup__close {
   outline: 0;
@@ -1627,7 +1647,7 @@ body::after {
   width: 100%;
   height: 100%
 }
-#leave-review-popup-form .checkbox {
+.leave-review .checkbox {
   text-align: center;
   margin: 0 auto;
   width: -webkit-max-content;
@@ -1681,7 +1701,8 @@ body::after {
   height: 37px;
   background: url(../img/icons/check.svg) 0 0/100% 100% no-repeat
 }
-#upload-photos-button {
+#upload-photos-button-pc,
+#upload-photos-button-popup {
   margin-bottom: 15px;
   background-color: rgba(255,255,255,0);
   border: 1px solid #c99a0c;
@@ -1694,21 +1715,27 @@ body::after {
   margin-left: auto;
   margin-right: auto
 }
-#photo-upload-fields {
+#photo-upload-fields-pc,
+#photo-upload-fields-popup {
   padding-top: 15px
 }
-#photo-upload-fields .input {
-  background: initial
+#photo-upload-fields-pc .input,
+#photo-upload-fields-popup .input {
+  background: initial;
+  border: initial
 }
 .popup__content {
-  max-width: 470px
+  max-width: 470px;
+  background-color: #f9f8f7
 }
 .field-website {
   display: none
 }
+#leave-review-form.checked .field-website,
 #leave-review-popup-form.checked .field-website {
   display: block
 }
+#leave-review-form.checked .roles,
 #leave-review-popup-form.checked .roles {
   display: none
 }
@@ -1716,7 +1743,7 @@ body::after {
   padding-bottom: 0
 }
 #form-leave-review .leave-review__title {
-  background-color: #eee
+  background-color: #f9f8f7
 }
 #form-leave-review .button.button-submit {
   margin-top: 20px;
@@ -1724,6 +1751,13 @@ body::after {
 }
 #form-leave-review .popup__content {
   padding: 20px 20px 50px
+}
+#leave-review-form {
+  max-width: 500px;
+  margin: 0 auto
+}
+textarea {
+  border: 1px solid #eee
 }
 .promise {
   padding-top: 80px;
@@ -2653,6 +2687,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .reviews {
     padding-top: 50px
+  }
+  .leave-review-tablet-pc {
+    display: none
+  }
+  .leave-review-mobile {
+    display: block
   }
   .promise {
     padding-top: 70px;

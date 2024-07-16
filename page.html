@@ -5,8 +5,8 @@
 	<title>Page</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?_v=20240715171236">
-	<link rel="stylesheet" href="newportfolio/css/style.min.css?_v=20240715171236">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?_v=20240716132749">
+	<link rel="stylesheet" href="newportfolio/css/style.min.css?_v=20240716132749">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -653,19 +653,13 @@
 
 							<a href="" class="see-more-reviews">See more reviews ></a>
 
-							<div class="leave-review">
+
+							<!-- Leave Review MOBILE, start -->
+							<!-- This block is visible only on screens less than 768 pixels -->
+							<div class="leave-review leave-review-mobile">
 								<div class="leave-review__title">
 									Leave a Review
 								</div>
-
-								<!-- <form id="leave-review" name="leave-review" action="#" method="get">
-										<div class="form-line">
-											<div class="leave-review__text">Rating</div>
-											<div data-rating="set" class="rating"></div>
-										</div>
-										
-										<button id="submit-review" data-popup="#form-leave-review" class="button">Submit review</button>
-									</form> -->
 
 								<div id="leave-review-in-popup">
 									<div class="form-line">
@@ -675,14 +669,97 @@
 									<button id="submit-review" data-popup="#form-leave-review" class="button">Submit review</button>
 								</div>
 
-
 							</div>
+							<!-- Leave Review MOBILE, end -->
 
+
+							<!-- Leave Review TABLET AND PC, start -->
+							<!-- This block is visible only on screens more than 768 pixels -->
+							<div class="leave-review leave-review-tablet-pc">
+								<div class="leave-review__title">
+									Leave a Review
+								</div>
+
+								<form id="leave-review-form" name="form-vendor" class="form-vendor" enctype="multipart/form-data" action="#" method="post">
+
+
+									<div class="form-line">
+										<div class="leave-review__text">Rating</div>
+										<div id="set-rating-pc" data-rating="set" data-rating-value="" class="rating"></div>
+									</div>
+									<input id="rating-hidden-fild-pc" type="hidden" name="form[rating]" value="">
+
+									<div id="hide-fields" class="hide">
+										<div class="hidden-fields">
+											<div id="checkbox-pc" class="contact-form__item">
+												<div class="checkbox">
+													<input id="c_3" class="checkbox__input" type="checkbox" value="1" name="form[checkbox]">
+													<label for="c_3" class="checkbox__label"><span class="checkbox__text">Review as a Fellow Wedding Vendor</span></label>
+												</div>
+											</div>
+
+											<div class="contact-form__item">
+												<input autocomplete="off" type="text" name="form[name]" data-validate data-error="This field is required." placeholder="Name*" class="input">
+											</div>
+
+											<div class="roles">
+												<div class="role couple">
+													<input type="radio" id="couple" name="role" value="couple">
+													<div class="label">Couple</div>
+												</div>
+												<div class="role wedding-guest">
+													<input type="radio" id="wedding-guest" name="role" value="wedding-guest">
+													<div class="label">Wedding guest</div>
+												</div>
+											</div>
+
+											<div class="contact-form__item">
+												<input type="text" name="form[email]" data-validate data-error="This field is required. Please enter a valid email address." data-required="email" placeholder="Email*" class="input">
+											</div>
+
+											<div class="contact-form__item field-website">
+												<input autocomplete="off" type="text" name="form[website]" placeholder="Website" class="input">
+											</div>
+
+
+											<div class="contact-form__item">
+												<textarea name="form[text]" cols="30" rows="10" placeholder="Your Review"></textarea>
+											</div>
+
+											<!-- New Button for Uploading Photos -->
+											<button type="button" id="upload-photos-button-pc" class="button">Upload up to 3 photos</button>
+
+											<!-- Fields for uploading photos (initially hidden) -->
+											<div id="photo-upload-fields-pc" style="display: none;">
+												<div class="contact-form__item">
+													<input type="file" name="form[photo1]" class="input">
+												</div>
+												<div class="contact-form__item">
+													<input type="file" name="form[photo2]" class="input">
+												</div>
+												<div class="contact-form__item">
+													<input type="file" name="form[photo3]" class="input">
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<button id="submit-pc" type="submit" class="button button-submit">
+										Submit Review
+									</button>
+								</form>
+							</div>
+							<!-- Leave Review TABLET AND PC, end -->
 
 
 						</div>
 					</section>
 					<!-- End of SECTION REWIEWS -->
+
+
+
+
 
 
 
@@ -800,13 +877,13 @@
 							Leave a Review
 						</div>
 
-						<form id="leave-review-popup-form" name="form-vendor" class="form-vendor" action="#" method="post">
+						<form id="leave-review-popup-form" name="form-vendor" class="form-vendor" enctype="multipart/form-data" action="#" method="post">
 
 							<div class="form-line">
 								<div class="leave-review__text">Rating</div>
-								<div id="set-rating" data-rating="set" data-rating-value="" class="rating"></div>
+								<div id="set-rating-popup" data-rating="set" data-rating-value="" class="rating"></div>
 							</div>
-							<input id="rating-hidden-fild" type="hidden" name="form[rating]" value="">
+							<input id="rating-hidden-fild-popup" type="hidden" name="form[rating]" value="">
 
 							<div id="checkbox-popup" class="contact-form__item">
 								<div class="checkbox">
@@ -844,10 +921,10 @@
 							</div>
 
 							<!-- New Button for Uploading Photos -->
-							<button type="button" id="upload-photos-button" class="button">Upload up to 3 photos</button>
+							<button type="button" id="upload-photos-button-popup" class="button">Upload up to 3 photos</button>
 
 							<!-- Fields for uploading photos (initially hidden) -->
-							<div id="photo-upload-fields" style="display: none;">
+							<div id="photo-upload-fields-popup" style="display: none;">
 								<div class="contact-form__item">
 									<input type="file" name="form[photo1]" class="input">
 								</div>
@@ -871,7 +948,7 @@
 	</div>
 
 
-	<script src="newportfolio/js/app.min.js?_v=20240715171236"></script>
+	<script src="newportfolio/js/app.min.js?_v=20240716132749"></script>
 </body>
 
 </html>

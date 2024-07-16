@@ -10616,11 +10616,11 @@ PERFORMANCE OF THIS SOFTWARE.
                     var activeRatingItems = leaveReviewElement.getElementsByClassName("rating__item--active");
                     var activeCount = activeRatingItems.length;
                     if (activeCount) {
-                        document.getElementById("rating-hidden-fild").value = activeCount;
-                        var setRatingElement = document.getElementById("set-rating");
-                        if (setRatingElement) {
-                            setRatingElement.setAttribute("data-rating-value", activeCount);
-                            var ratingItems = setRatingElement.getElementsByClassName("rating__item");
+                        document.getElementById("rating-hidden-fild-popup").value = activeCount;
+                        var setRatingElementPopup = document.getElementById("set-rating-popup");
+                        if (setRatingElementPopup) {
+                            setRatingElementPopup.setAttribute("data-rating-value", activeCount);
+                            var ratingItems = setRatingElementPopup.getElementsByClassName("rating__item");
                             for (var i = 0; i < activeCount && i < ratingItems.length; i++) ratingItems[i].classList.add("rating__item--active");
                         }
                     }
@@ -10641,22 +10641,50 @@ PERFORMANCE OF THIS SOFTWARE.
                     }));
                 }));
             }));
-            const uploadButton = document.getElementById("upload-photos-button");
-            const photoUploadFields = document.getElementById("photo-upload-fields");
-            uploadButton.addEventListener("click", (function() {
-                photoUploadFields.style.display = "block";
+            const uploadButtonPopup = document.getElementById("upload-photos-button-popup");
+            const photoUploadFieldsPopup = document.getElementById("photo-upload-fields-popup");
+            uploadButtonPopup.addEventListener("click", (function() {
+                photoUploadFieldsPopup.style.display = "block";
             }));
-            var setRating = document.getElementById("set-rating");
-            if (setRating) {
-                const ratingItems = setRating.querySelectorAll(".rating__item");
+            const uploadButtonPC = document.getElementById("upload-photos-button-pc");
+            const photoUploadFieldsPC = document.getElementById("photo-upload-fields-pc");
+            uploadButtonPC.addEventListener("click", (function() {
+                photoUploadFieldsPC.style.display = "block";
+            }));
+            var setRatingPopup = document.getElementById("set-rating-popup");
+            if (setRatingPopup) {
+                const ratingItems = setRatingPopup.querySelectorAll(".rating__item");
                 ratingItems.forEach(((item, index) => {
                     item.addEventListener("click", (() => {
                         console.log(`Clicked on element ${index + 1}`);
-                        var setRatingElement = document.getElementById("rating-hidden-fild");
+                        var setRatingElement = document.getElementById("rating-hidden-fild-popup");
                         if (setRatingElement) {
                             var indexNumber = index + 1;
-                            document.getElementById("rating-hidden-fild").value = indexNumber;
+                            document.getElementById("rating-hidden-fild-popup").value = indexNumber;
                         }
+                    }));
+                }));
+            }
+            const hideFields = document.getElementById("hide-fields");
+            const submitButtonPC = document.getElementById("submit-pc");
+            submitButtonPC.addEventListener("click", (function(event) {
+                if (hideFields.classList.contains("hide")) {
+                    event.preventDefault();
+                    hideFields.classList.remove("hide");
+                }
+            }));
+            var setRatingPC = document.getElementById("set-rating-pc");
+            if (setRatingPC) {
+                const ratingItems = setRatingPC.querySelectorAll(".rating__item");
+                ratingItems.forEach(((item, index) => {
+                    item.addEventListener("click", (() => {
+                        console.log(`Clicked on element ${index + 1}`);
+                        var setRatingElement = document.getElementById("rating-hidden-fild-pc");
+                        if (setRatingElement) {
+                            var indexNumber = index + 1;
+                            document.getElementById("rating-hidden-fild-pc").value = indexNumber;
+                        }
+                        hideFields.classList.remove("hide");
                     }));
                 }));
             }
@@ -10668,6 +10696,17 @@ PERFORMANCE OF THIS SOFTWARE.
                     if (lvForm) lvForm.classList.add("checked");
                 } else {
                     lvForm = document.querySelector("#leave-review-popup-form");
+                    if (lvForm) lvForm.classList.remove("checked");
+                }
+            }));
+            const checkboxPC = document.getElementById("checkbox-pc");
+            if (checkboxPC) checkboxPC.addEventListener("click", (() => {
+                const checkedCheckbox = checkboxPC.querySelector(".checkbox__input:checked");
+                if (checkedCheckbox) {
+                    var lvForm = document.querySelector("#leave-review-form");
+                    if (lvForm) lvForm.classList.add("checked");
+                } else {
+                    lvForm = document.querySelector("#leave-review-form");
                     if (lvForm) lvForm.classList.remove("checked");
                 }
             }));
