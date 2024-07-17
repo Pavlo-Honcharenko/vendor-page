@@ -624,7 +624,7 @@ body::after {
   position: absolute;
   right: 15px;
   top: 50%;
-  background-color: #000;
+  background-color: #989898;
   height: 1px;
   width: 12px;
   transition: -webkit-transform .5s ease 0s;
@@ -953,6 +953,14 @@ textarea {
   outline: 0;
   border: 1px solid #da312e
 }
+.checkbox__text {
+  padding-right: 3px;
+  font-size: 15px;
+  line-height: 120%
+}
+.contact-form-left {
+  margin-bottom: 5px
+}
 .contact-form__item._form-focus,
 .contact-form__item.filled {
   position: relative
@@ -1078,7 +1086,10 @@ textarea {
   width: 100%
 }
 .main__col--content .two-banners .three-years img {
-  width: 90%
+  display: block;
+  width: 97%;
+  margin-left: auto;
+  max-height: 54px
 }
 .main__col--content .see-website {
   width: 270px;
@@ -1202,8 +1213,9 @@ textarea {
 .why-book__text {
   color: #231f20;
   text-align: center;
-  font-size: 16px;
-  line-height: 135%
+  font-size: 18px;
+  line-height: 135%;
+  letter-spacing: -.3px
 }
 .why-book__text p {
   margin-bottom: 40px
@@ -1213,7 +1225,7 @@ textarea {
   font-size: 14px
 }
 .why-book__text-bottom span {
-  font-family: "Playfair Display";
+  font-family: "Playfair Display"!important;
   color: #c99a0c
 }
 .gallery {
@@ -1347,8 +1359,7 @@ textarea {
   padding: 0 10px;
   font-size: 15px;
   color: #211d1e;
-  min-height: 60px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   max-width: 400px;
   text-align: center;
   line-height: 135%
@@ -1373,13 +1384,13 @@ textarea {
   left: 20px
 }
 .highlights .swiper-button-prev img {
-  width: 28px
+  width: 23px
 }
 .highlights .swiper-button-next {
   right: 20px
 }
 .highlights .swiper-button-next img {
-  width: 28px
+  width: 23px
 }
 .qa {
   padding-top: 80px;
@@ -1548,7 +1559,7 @@ textarea {
 }
 .reviews-list .review__text {
   font-size: 16px;
-  font-weight: 300;
+  color: #211d1e;
   line-height: 130%
 }
 .reviews-list .review__text p {
@@ -1556,7 +1567,7 @@ textarea {
 }
 .reviews-list .review-more__content {
   font-size: 16px;
-  font-weight: 300;
+  color: #211d1e;
   line-height: 130%
 }
 .reviews-list .review-more__content p {
@@ -1564,7 +1575,8 @@ textarea {
 }
 .reviews-list .review-more__more {
   padding-top: 15px;
-  font-size: 13px;
+  padding-bottom: 10px;
+  font-size: 14px;
   font-weight: 500;
   text-align: center;
   margin: auto;
@@ -1580,7 +1592,7 @@ textarea {
   position: absolute;
   top: -13px;
   left: calc(50% - 68px);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   display: flex;
   justify-content: center;
@@ -1590,6 +1602,11 @@ textarea {
   width: -webkit-min-content;
   width: min-content;
   white-space: nowrap
+}
+.reviews-list .vendors-response__text {
+  font-size: 16px;
+  color: #211d1e;
+  line-height: 130%
 }
 .reviews-list .vendors-response__text p:not(:last-child) {
   margin-bottom: 15px
@@ -1620,9 +1637,15 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   color: #000;
   font-size: 18px;
-  margin: 30px auto 50px
+  margin: 30px auto 50px;
+  position: relative;
+  padding: 0;
+  z-index: 5
 }
 .rating {
   margin-bottom: 27px;
@@ -1788,11 +1811,14 @@ textarea {
   white-space: nowrap;
   width: -webkit-min-content;
   width: min-content;
-  padding-left: 50px;
-  padding-right: 50px;
   color: #9b9b9b;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 55px
 }
 #photo-upload-fields-pc,
 #photo-upload-fields-popup {
@@ -1829,7 +1855,8 @@ textarea {
   margin-bottom: -25px
 }
 #form-leave-review .popup__content {
-  padding: 20px 20px 50px
+  padding: 20px 20px 50px;
+  border-radius: 0
 }
 #leave-review-form {
   max-width: 500px;
@@ -1853,8 +1880,9 @@ textarea {
 }
 .promise__text {
   color: #000;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 300;
+  line-height: 130%;
   margin-bottom: 30px;
   text-align: center
 }
@@ -1863,7 +1891,7 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px
+  gap: 22px
 }
 .promise-item {
   white-space: nowrap;
@@ -1871,8 +1899,11 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  font-size: 10px
+  gap: 6px;
+  font-size: 15px
+}
+.promise-item img {
+  margin-bottom: 4px
 }
 .more {
   padding-top: 80px;
@@ -2561,9 +2592,26 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     flex: 0 0 550px
   }
 }
+@media (max-width:650px) {
+  .highlights .swiper-button-next,
+  .highlights .swiper-button-prev {
+    top: 60%
+  }
+}
 @media (max-width:600px) {
   .lg-outer .lg-object {
     max-width: 100%!important
+  }
+}
+@media (max-width:550px) {
+  .promise-item {
+    flex: 1 1 100%
+  }
+}
+@media (max-width:530px) {
+  .highlights .swiper-button-next,
+  .highlights .swiper-button-prev {
+    top: 56%
   }
 }
 @media (max-width:500px) {
@@ -2584,6 +2632,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     position: absolute;
     top: 0;
     left: 40px
+  }
+}
+@media (max-width:410px) {
+  .highlights .swiper-button-next,
+  .highlights .swiper-button-prev {
+    top: 52%
   }
 }
 @media (max-width:400px) {
@@ -2650,8 +2704,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     text-align: center
   }
   .qa__description {
-    text-align: center;
-    line-height: 150%
+    text-align: center
   }
 }
 @media (max-width:47.99875em) {
@@ -2669,7 +2722,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     padding-bottom: 70px
   }
   .main__col--content .image-premium-vendor {
-    margin: 35px auto 35px
+    margin: 35px auto 35px;
+    width: 220px
   }
   .main__col--content .title {
     margin-bottom: 35px;
@@ -2704,7 +2758,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     padding-bottom: 45px
   }
   .gallery__description {
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    font-size: 15px
   }
   .bg-gradient::after {
     width: 100vw
@@ -2714,7 +2769,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     padding-bottom: 45px
   }
   .highlights__description {
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    font-size: 15px
   }
   .highlights__content {
     padding: 40px
@@ -2722,35 +2778,63 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .highlights .slide-image {
     border-bottom: 5px solid #c99a0c
   }
+  .highlights .swiper-button-next,
+  .highlights .swiper-button-prev {
+    bottom: initial;
+    top: 65%
+  }
+  .highlights .swiper-button-prev img {
+    width: 16px
+  }
+  .highlights .swiper-button-prev {
+    left: 10px
+  }
+  .highlights .swiper-button-next img {
+    width: 16px
+  }
+  .highlights .swiper-button-next {
+    right: 10px
+  }
   .qa {
     padding-top: 50px;
     padding-bottom: 45px
   }
   .qa__title {
-    font-size: 70px
+    font-size: 65px
   }
   .qa__description {
-    margin-bottom: 50px
+    margin-bottom: 30px;
+    font-size: 15px
   }
   .features {
     padding-top: 40px;
     padding-bottom: 30px
   }
   .features__description {
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    font-size: 15px
   }
   .awards {
     padding-top: 40px;
     padding-bottom: 25px
   }
   .awards__description {
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    font-size: 15px
   }
   .awards-items .awards-item {
     max-width: 220px
   }
   .reviews {
     padding-top: 50px
+  }
+  .reviews__description {
+    font-size: 15px
+  }
+  .reviews-list {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1
   }
   .leave-review-tablet-pc {
     display: none
@@ -2797,11 +2881,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     width: 20px
   }
   .qa {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 40px
   }
   .qa__title {
-    font-size: 60px
+    font-size: 55px
   }
   .features {
     padding-top: 30px;
@@ -2889,8 +2973,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     box-shadow: 1px 1px 2px #c99a0c;
     font-weight: 500
   }
+  .see-more-reviews:hover {
+    cursor: pointer
+  }
   .leave-review .button:hover {
-    background-color: rgba(201,154,12,0);
     box-shadow: 1px 1px 2px #c99a0c;
     font-weight: 500
   }

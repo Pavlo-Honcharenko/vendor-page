@@ -10720,7 +10720,7 @@ PERFORMANCE OF THIS SOFTWARE.
         showMore();
         formFieldsInit({
             viewPass: false,
-            autoHeight: false
+            autoHeight: true
         });
         formSubmit();
         formRating();
