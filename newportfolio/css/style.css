@@ -608,8 +608,8 @@ body::after {
   min-height: 80px;
   display: flex;
   align-items: center;
-  font-size: 15px;
-  line-height: 150%
+  font-size: 16px;
+  line-height: 140%
 }
 .spollers__title::-webkit-details-marker,
 .spollers__title::marker {
@@ -622,10 +622,10 @@ body::after {
 ._spoller-init .spollers__title::before {
   content: "";
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 50%;
   background-color: #000;
-  height: 2px;
+  height: 1px;
   width: 12px;
   transition: -webkit-transform .5s ease 0s;
   transition: transform .5s ease 0s;
@@ -656,8 +656,8 @@ body::after {
 .spollers__body {
   padding: 1.25rem 1.5625rem;
   border-radius: .3125rem;
-  font-size: 13px;
-  line-height: 180%;
+  font-size: 16px;
+  line-height: 140%;
   color: #7c7c7c
 }
 [data-showmore-button] span:last-child {
@@ -834,6 +834,10 @@ body::after {
   background-color: #fff;
   flex: 0 0 100vw
 }
+.input,
+textarea {
+  padding-right: 30px
+}
 .contact-form {
   position: fixed;
   width: 330px;
@@ -843,29 +847,33 @@ body::after {
   display: none
 }
 .contact-form__title {
-  font-size: 14px;
+  font-size: 20px;
   color: #c99a0c;
   text-align: center;
   margin-bottom: 20px;
   text-transform: uppercase
 }
 .contact-form__description {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 125%;
   text-align: center;
   color: #161616;
-  margin-bottom: 35px
+  margin-bottom: 30px
 }
 .contact-form__slogan {
   font-size: 17px;
   color: #c99a0c;
-  padding-bottom: 10px
+  padding-top: 10px
+}
+.contact-form__item--make {
+  margin-bottom: 10px
 }
 .form-vendor .form__error {
-  padding: 8px 10px;
+  padding: 5px 10px 8px;
   margin-bottom: -8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
-  color: #a87e00
+  color: #da312e
 }
 .form-vendor .input {
   background-color: #fff;
@@ -904,12 +912,13 @@ body::after {
   background-color: #fff;
   color: #000;
   width: 100%;
-  padding: 10px;
+  padding: 10px 25px 10px 10px;
   font-size: 15px;
   font-weight: 300
 }
 .form-vendor .checkbox__label {
   font-size: 11px;
+  line-height: 115%;
   color: #161616
 }
 .form-vendor .contact-form__item {
@@ -940,11 +949,61 @@ body::after {
   background-color: #c99a0c;
   font-size: 16px
 }
+._form-error .input {
+  outline: 0;
+  border: 1px solid #da312e
+}
+.contact-form__item._form-focus,
+.contact-form__item.filled {
+  position: relative
+}
+.contact-form__item._form-focus::after,
+.contact-form__item.filled::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url(../img/icons/check.svg) center center/100% 100% no-repeat
+}
+._form-error.filled {
+  position: relative
+}
+._form-error.filled::after {
+  content: "";
+  display: none
+}
+.item-wedding-date {
+  position: relative
+}
+.item-wedding-date::after {
+  content: "";
+  display: none
+}
+.item-wedding-date .input {
+  padding-right: 10px!important
+}
+._form-focus .input,
+._form-focus textarea {
+  border: initial;
+  border-bottom: 2px solid #c99a0c;
+  position: relative
+}
+input,
+textarea {
+  outline: 0
+}
+.contact-form-left {
+  padding-left: 5px;
+  margin-right: -10px
+}
 .breadcrumbs {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin: 70px 0 40px;
+  margin: 28px 0 40px;
   flex-wrap: wrap
 }
 .breadcrumbs__item {
@@ -999,6 +1058,7 @@ body::after {
   margin-bottom: 40px
 }
 .main__col--content .text-based img {
+  margin-top: -20px;
   margin-right: 15px
 }
 .main__col--content .two-banners {
@@ -1142,7 +1202,6 @@ body::after {
 .why-book__text {
   color: #231f20;
   text-align: center;
-  font-weight: 300;
   font-size: 16px;
   line-height: 135%
 }
@@ -1151,7 +1210,7 @@ body::after {
 }
 .why-book__text-bottom {
   text-align: center;
-  font-size: 16px
+  font-size: 14px
 }
 .why-book__text-bottom span {
   font-family: "Playfair Display";
@@ -1308,13 +1367,19 @@ body::after {
 .highlights .swiper-button-next,
 .highlights .swiper-button-prev {
   position: absolute;
-  bottom: 130px
+  bottom: 22%
 }
 .highlights .swiper-button-prev {
   left: 20px
 }
+.highlights .swiper-button-prev img {
+  width: 28px
+}
 .highlights .swiper-button-next {
   right: 20px
+}
+.highlights .swiper-button-next img {
+  width: 28px
 }
 .qa {
   padding-top: 80px;
@@ -1366,15 +1431,16 @@ body::after {
 }
 .features-items .features-item__image {
   width: 100%;
-  margin-bottom: 30px
+  margin-bottom: 25px
 }
 .features-items .features-item__image img {
   width: 100%
 }
 .features-items .features-item__text {
   text-align: center;
-  font-size: 19px;
-  margin-bottom: 30px
+  font-size: 18px;
+  line-height: 130%;
+  margin-bottom: 25px
 }
 .features-items .features-item__button {
   font-size: 19px;
@@ -1480,8 +1546,18 @@ body::after {
   margin-bottom: 5px;
   text-align: center
 }
+.reviews-list .review__text {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 130%
+}
 .reviews-list .review__text p {
   margin-bottom: 15px
+}
+.reviews-list .review-more__content {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 130%
 }
 .reviews-list .review-more__content p {
   margin-bottom: 15px
@@ -1520,7 +1596,9 @@ body::after {
 }
 .reviews-list.bg-gradient::after {
   content: "";
-  bottom: 44px
+  position: absolute;
+  top: initial;
+  bottom: 35px
 }
 ._showmore-active [data-showmore-button] span {
   position: relative
@@ -1629,7 +1707,8 @@ body::after {
   align-items: center;
   width: 260px;
   height: 55px;
-  margin: auto auto 30px
+  margin: auto auto 30px;
+  transition: all .3s ease 0s
 }
 .leave-review-mobile {
   display: none
@@ -2443,7 +2522,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     flex: 0 0 calc(100vw - 300px)
   }
   .contact-form {
-    width: 280px;
+    width: 290px;
     display: block
   }
   .main__col {
@@ -2480,21 +2559,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .main__col {
     flex: 0 0 550px
-  }
-}
-@media (min-width:1800px) {
-  .lg-backdrop {
-    left: 19.4vw!important
-  }
-  .lg-outer {
-    width: 80.6vw!important;
-    left: 19.4vw!important
-  }
-  .col-contact {
-    flex: 0 0 19.4vw
-  }
-  .col-content {
-    flex: 0 0 calc(100% - 19.4vw)
   }
 }
 @media (max-width:600px) {
@@ -2826,7 +2890,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     font-weight: 500
   }
   .leave-review .button:hover {
-    background-color: rgba(201,154,12,.9607843137);
+    background-color: rgba(201,154,12,0);
     box-shadow: 1px 1px 2px #c99a0c;
     font-weight: 500
   }

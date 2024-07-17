@@ -4918,6 +4918,10 @@
                     if (!targetElement.hasAttribute("data-no-focus-classes")) {
                         targetElement.classList.remove("_form-focus");
                         targetElement.parentElement.classList.remove("_form-focus");
+                        if (targetElement && targetElement.value.trim() !== "") {
+                            targetElement.parentElement.classList.remove("filled");
+                            targetElement.parentElement.classList.add("filled");
+                        } else targetElement.parentElement.classList.remove("filled");
                     }
                     targetElement.hasAttribute("data-validate") ? formValidate.validateInput(targetElement) : null;
                 }
