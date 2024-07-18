@@ -8867,14 +8867,51 @@
                     },
                     on: {}
                 });
-                new swiper_core_Swiper(".highlights__slider", {
+                new swiper_core_Swiper(".features__slider", {
                     modules: [ Navigation, Autoplay ],
                     observer: true,
                     observeParents: true,
                     slidesPerView: 1,
-                    spaceBetween: 0,
+                    spaceBetween: 30,
                     speed: 800,
                     loop: true,
+                    autoplay: {
+                        delay: 6e3,
+                        disableOnInteraction: false
+                    },
+                    navigation: {
+                        prevEl: ".swiper-button-prev",
+                        nextEl: ".swiper-button-next"
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                            autoHeight: true
+                        },
+                        992: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        1268: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        }
+                    },
+                    on: {}
+                });
+                new swiper_core_Swiper(".highlights__slider", {
+                    modules: [ Navigation, Autoplay ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 1.08,
+                    spaceBetween: 10,
+                    speed: 800,
+                    loop: true,
+                    autoplay: {
+                        delay: 7e3,
+                        disableOnInteraction: false
+                    },
                     navigation: {
                         prevEl: ".swiper-button-prev",
                         nextEl: ".swiper-button-next"
@@ -10614,6 +10651,23 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         document.addEventListener("DOMContentLoaded", (function() {
             var submitReviewButton = document.getElementById("submit-review");
+            var mobileRating = document.getElementById("mobile-rating");
+            if (mobileRating) {
+                const ratingItems = mobileRating.querySelectorAll(".rating__item");
+                ratingItems.forEach(((item, index) => {
+                    item.addEventListener("click", (() => {
+                        var setRatingElement = document.getElementById("rating-hidden-fild-popup");
+                        if (setRatingElement) {
+                            var indexNumber = index + 1;
+                            document.getElementById("rating-hidden-fild-popup").value = indexNumber;
+                        }
+                        var setRatingElementPopup = document.getElementById("set-rating-popup");
+                        var ratingItems = setRatingElementPopup.getElementsByClassName("rating__item");
+                        var activeCount = indexNumber;
+                        for (var i = 0; i < activeCount && i < ratingItems.length; i++) ratingItems[i].classList.add("rating__item--active");
+                    }));
+                }));
+            }
             if (submitReviewButton) submitReviewButton.addEventListener("click", (function() {
                 var leaveReviewElement = document.getElementById("leave-review-in-popup");
                 if (leaveReviewElement) {
@@ -10682,7 +10736,6 @@ PERFORMANCE OF THIS SOFTWARE.
                 const ratingItems = setRatingPC.querySelectorAll(".rating__item");
                 ratingItems.forEach(((item, index) => {
                     item.addEventListener("click", (() => {
-                        console.log(`Clicked on element ${index + 1}`);
                         var setRatingElement = document.getElementById("rating-hidden-fild-pc");
                         if (setRatingElement) {
                             var indexNumber = index + 1;
@@ -10720,7 +10773,7 @@ PERFORMANCE OF THIS SOFTWARE.
         showMore();
         formFieldsInit({
             viewPass: false,
-            autoHeight: true
+            autoHeight: false
         });
         formSubmit();
         formRating();
