@@ -952,7 +952,8 @@ textarea {
 }
 ._form-error .input {
   outline: 0;
-  border: 1px solid #da312e
+  border: 1px solid #eee;
+  border-bottom: 2px solid #da312e
 }
 .checkbox__text {
   padding-right: 3px;
@@ -966,7 +967,9 @@ textarea {
 .contact-form__item.filled {
   position: relative
 }
-.contact-form__item._form-focus::after,
+.contact-form__item.filled {
+  position: relative
+}
 .contact-form__item.filled::after {
   content: "";
   position: absolute;
@@ -996,7 +999,7 @@ textarea {
 }
 ._form-focus .input,
 ._form-focus textarea {
-  border: initial;
+  border: 1px solid #eee;
   border-bottom: 2px solid #c99a0c;
   position: relative
 }
@@ -1436,6 +1439,7 @@ textarea {
 }
 .features-item__image {
   width: 100%;
+  max-width: 500px;
   margin-bottom: 25px
 }
 .features-item__image img {
@@ -1466,7 +1470,7 @@ textarea {
 .features__slider .swiper-button-next,
 .features__slider .swiper-button-prev {
   position: absolute;
-  top: 75%;
+  top: 32%;
   display: block;
   width: 15px;
   height: 30px
@@ -1573,7 +1577,8 @@ textarea {
   text-align: center
 }
 .reviews-list .review__text {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 300;
   color: #211d1e;
   line-height: 130%
 }
@@ -2617,28 +2622,34 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     height: 70px
   }
 }
-@media (max-width:1300px) {
+@media (max-width:1240px) {
   .features__slider .swiper-button-next,
   .features__slider .swiper-button-prev {
-    top: 70%
+    top: 29%
   }
 }
 @media (max-width:1200px) {
-  .features__slider .swiper-button-next,
-  .features__slider .swiper-button-prev {
-    top: 64%
+  .main__col--content .two-banners .destination-wedding,
+  .main__col--content .two-banners .three-years {
+    flex: 0 1 160px
+  }
+  .main__col--content .two-banners .three-years img {
+    max-height: 48px
+  }
+  .awards-items .awards-item {
+    max-width: 200px
   }
 }
-@media (max-width:1100px) {
+@media (max-width:992px) {
   .features__slider .swiper-button-next,
   .features__slider .swiper-button-prev {
-    top: 62%
+    top: 32%
   }
 }
-@media (max-width:900px) {
+@media (max-width:830px) {
   .features__slider .swiper-button-next,
   .features__slider .swiper-button-prev {
-    top: 58%
+    top: 30%
   }
 }
 @media (max-width:825px) {
@@ -2647,10 +2658,39 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     height: 50px
   }
 }
+@media (max-width:768px) {
+  .features__slider .swiper-button-next,
+  .features__slider .swiper-button-prev {
+    top: 29%
+  }
+}
 @media (max-width:650px) {
+  .main__col--content .two-banners {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 12vw
+  }
+  .main__col--content .two-banners .destination-wedding,
+  .main__col--content .two-banners .three-years {
+    flex: 0 1 130px
+  }
+  .main__col--content .two-banners .three-years img {
+    width: 100%;
+    max-height: 41px
+  }
   .highlights .swiper-button-next,
   .highlights .swiper-button-prev {
     top: 60%
+  }
+}
+@media (max-width:640px) {
+  .features__slider .swiper-button-next,
+  .features__slider .swiper-button-prev {
+    top: initial;
+    bottom: 80px;
+    width: 18px;
+    height: 35px
   }
 }
 @media (max-width:600px) {
@@ -2687,6 +2727,11 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     position: absolute;
     top: 0;
     left: 40px
+  }
+}
+@media (max-width:420px) {
+  .main__col--content .two-banners {
+    gap: 8vw
   }
 }
 @media (max-width:410px) {
@@ -2760,6 +2805,17 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .qa__description {
     text-align: center
+  }
+  .reviews__description {
+    margin-bottom: 30px
+  }
+  .reviews-list {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1
+  }
+  .reviews-list .review__cell {
+    padding: 40px
   }
 }
 @media (max-width:47.99875em) {
@@ -2867,7 +2923,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
   .features__description {
     margin-bottom: 30px;
-    font-size: 15px
+    font-size: 15px;
+    padding: 0 10px
   }
   .features-item__button {
     width: 220px
@@ -2875,10 +2932,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .features__slider {
     margin: 0 -10px;
     padding: 0 19px
-  }
-  .features__slider .swiper-button-next,
-  .features__slider .swiper-button-prev {
-    top: 64%
   }
   .awards {
     padding-top: 40px;
@@ -2889,18 +2942,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     font-size: 15px
   }
   .awards-items .awards-item {
-    max-width: 220px
+    max-width: 200px
   }
   .reviews {
     padding-top: 50px
   }
   .reviews__description {
     font-size: 15px
-  }
-  .reviews-list {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1
   }
   .leave-review-tablet-pc {
     display: none
@@ -2960,6 +3008,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .awards {
     padding-top: 30px;
     padding-bottom: 20px
+  }
+  .awards-items .awards-item {
+    max-width: 165px
   }
   .reviews {
     padding-top: 40px
