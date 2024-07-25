@@ -841,10 +841,11 @@ textarea {
 .contact-form {
   position: fixed;
   width: 330px;
-  max-height: 100vh;
+  max-height: calc(100vh - 100px);
   overflow: auto;
   padding: 30px 15px;
-  display: none
+  display: none;
+  background-color: #f9f8f7
 }
 .contact-form__title {
   font-size: 20px;
@@ -1999,7 +2000,7 @@ textarea {
   border-radius: 0 32px 0 0;
   padding: 10px 30px;
   display: none;
-  z-index: 200
+  z-index: 100
 }
 .floating-ribbon__text {
   color: #000;
@@ -2066,6 +2067,9 @@ textarea {
   width: 100%;
   padding: 0 10px 10px;
   margin: 20px 0 0 0
+}
+#vendor-portfolio.fixed-header {
+  padding-top: 162px
 }
 .swiper {
   overflow: hidden
