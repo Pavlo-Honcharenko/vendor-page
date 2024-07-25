@@ -5,8 +5,8 @@
 	<title>Page with slashes</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?_v=20240724225310">
-	<link rel="stylesheet" href="/newportfolio/css/style.min.css?_v=20240724225310">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?_v=20240725163258">
+	<link rel="stylesheet" href="/newportfolio/css/style.min.css?_v=20240725163258">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -931,6 +931,17 @@
 			</div>
 			<!-- THE CONTENT OF THE PAGE, end-->
 
+			<!-- FLOAT RIBBON, start -->
+			<div class="floating-ribbon" data-popup="#contact">
+				<div class="floating-ribbon__text">
+					<span>Start a conversation</span>
+				</div>
+				<div class="floating-ribbon__arrow">
+					<img src="/newportfolio/img/icons/slide-next.svg" alt="start">
+				</div>
+			</div>
+			<!-- FLOAT RIBBON, end -->
+
 		</main>
 
 	</div>
@@ -1024,7 +1035,97 @@
 	</div>
 
 
-	<script src="/newportfolio/js/app.min.js?_v=20240724225310"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="contact" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" />
+						<path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" />
+					</svg>
+				</button>
+				<div class="popup__text">
+
+					<div class="contact-form contact-form-left">
+						<div class="contact-form__title">
+							CONTACT MemoryBox
+						</div>
+
+						<div class="contact-form__description">
+							Don’t have wedding details yet? Our vendors are happy
+							to hear from you at any stage in your planning process.
+							Just share what you know so far!
+						</div>
+
+						<form name="form-vendor-popup" class="form-vendor" action="#" method="post">
+
+							<div class="contact-form__item">
+								<input autocomplete="off" type="text" name="form[name]" data-validate data-error="This field is required." placeholder="Couple’s Name*" class="input">
+							</div>
+
+
+							<div class="contact-form__item">
+								<input type="text" name="form[email]" data-validate data-error="This field is required. Please enter a valid email address." data-required="email" placeholder="Email*" class="input">
+							</div>
+
+							<div class="contact-form__item">
+								<input autocomplete="off" type="text" name="form[phone]" placeholder="Phone" class="input">
+							</div>
+
+							<div class="contact-form__item item-wedding-date">
+								<input type="date" name="form[date]" placeholder="Wedding Date" class="input wedding-date">
+							</div>
+
+							<div class="contact-form__item">
+								<input type="text" name="form[location]" placeholder="Wedding Location" class="input">
+							</div>
+
+							<div class="contact-form__item">
+								<!-- cols="30" rows="10" -->
+								<textarea name="form[text]" placeholder="Tell us more details (your vision, your style or questions you may have for this vendor)"></textarea>
+							</div>
+
+							<div class="contact-form__item contact-form__item--make">
+								<div class="contact-form__slogan">
+									Make contacting more vendors easy
+								</div>
+							</div>
+
+							<div class="contact-form__item">
+								<div class="checkbox">
+									<input id="c_popup_1" class="checkbox__input" type="checkbox" value="1" name="form[checkbox]">
+									<label for="c_popup_1" class="checkbox__label"><span class="checkbox__text">Contacting more vendors is easy. Check this box to use this info on future Junebug vendor forms.</span></label>
+								</div>
+							</div>
+
+							<button type="submit" class="button">
+								Contact Vendor
+							</button>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script src="/newportfolio/js/app.min.js?_v=20240725163258"></script>
 </body>
 
 </html>
