@@ -1998,7 +1998,8 @@ textarea {
   height: 64px;
   border-radius: 0 32px 0 0;
   padding: 10px 30px;
-  display: none
+  display: none;
+  z-index: 200
 }
 .floating-ribbon__text {
   color: #000;
